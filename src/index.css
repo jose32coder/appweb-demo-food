@@ -3,59 +3,72 @@
 @tailwind utilities;
 
 
-*{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    font-family: Outfit;
-  }
-  
-  body{
-    min-height: 100vh;
-    position: relative;
-  }
-  
-  a{
-    text-decoration: none;
-    color: inherit;
-  }
-  .app{
-    width: 80%;
-    margin: auto;
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: Outfit;
+}
+
+body {
+  min-height: 100vh;
+  position: relative;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.app {
+  width: 100%;
+  padding: 0 10%;
+  margin: auto;
+}
+
+li {
+  cursor: pointer;
+}
+
+.active {
+  padding-bottom: 2px;
+  border-bottom: 2px solid #49557e;
+}
+
+.activePlatillo {
+  border: 5px solid tomato;
+  padding: 2px;
+}
+
+.scroll-menu-list::-webkit-scrollbar {
+  display: none;
+  /* Safari and Chrome */
+}
+
+.scroll-menu-list {
+  -ms-overflow-style: none;
+  /* Internet Explorer and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+.no-scroll {
+  overflow: hidden;
+}
+
+
+@media screen and (max-width: 1050px) {
+  .header-contents {
+    max-width: 45%;
   }
 
-  li{
-    cursor: pointer;
+  .header-contents p {
+    display: none;
   }
+}
 
-  .active{
-    padding-bottom: 2px;
-    border-bottom: 2px solid #49557e;
+@media screen and (max-width: 750px) {
+  .header-contents {
+    max-width: 75%;
   }
-  .activePlatillo{
-    border: 5px solid tomato;
-    padding: 2px;
-  }
-
- .scroll-menu-list::-webkit-scrollbar {
-    display: none; /* Safari and Chrome */
-  }
-  
- .scroll-menu-list {
-    -ms-overflow-style: none; /* Internet Explorer and Edge */
-    scrollbar-width: none; /* Firefox */
-  }
-
-  @media screen and (max-width: 1050px) {
-      .header-contents{
-        max-width: 45%;
-      }
-      .header-contents p{
-        display: none;
-      }
-  }
-  @media screen and (max-width: 750px) {
-    .header-contents{
-      max-width: 75%;
-    }
 }

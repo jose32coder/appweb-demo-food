@@ -1,41 +1,52 @@
 /* eslint-disable react/prop-types */
 import { createContext, useState } from "react";
-import { food_list } from '../assets/assets'
+import { food_list } from '../assets/assets';
 
-export const StoreContext = createContext(null)
+export const StoreContext = createContext(null);
 
 const StoreContextProvider = (props) => {
+  const [itemsCart, setItemsCart] = useState({});
 
-    const [itemsCart, setItemsCart] = useState({});
+  const addCart = (itemId) => {
+    setItemsCart(prev => ({
+      ...prev,
+      [itemId]: (prev[itemId] || 0) + 1
+    }));
+  };
 
-    const addCart = (itemId) => {
-        if (!itemsCart[itemId]) {
-            setItemsCart((prev) => ({ ...prev, [itemId]:1 }))
-        }
-        else {
-            setItemsCart((prev) => ({ ...prev, [itemId]: prev[itemId]+1 }))
-        }
-    }
+  const removeCart = (id) => {
+    setItemsCart(prev => {
+        const newCart = { ...prev };
+        delete newCart[id];
+        return newCart;
+    });
+};
 
-    const removeCart = (itemId) =>{
-        setItemsCart((prev) =>({...prev,[itemId]:prev[itemId]-1}))
-    }
-    
+  const setItemQuantity = (itemId, quantity) => {
+    setItemsCart(prev => {
+      const newCart = { ...prev };
+      if (quantity > 0) {
+        newCart[itemId] = quantity;
+      } else {
+        delete newCart[itemId];
+      }
+      return newCart;
+    });
+  };
 
+  const contextValue = {
+    food_list,
+    itemsCart,
+    addCart,
+    removeCart,
+    setItemQuantity
+  };
 
-    const contextValue = {
-        food_list,
-        itemsCart,
-        setItemsCart,
-        addCart,
-        removeCart
-    }
+  return (
+    <StoreContext.Provider value={contextValue}>
+      {props.children}
+    </StoreContext.Provider>
+  );
+};
 
-    return (
-        <StoreContext.Provider value={contextValue}>
-            {props.children}
-        </StoreContext.Provider>
-    )
-}
-
-export default StoreContextProvider
+export default StoreContextProvider;
