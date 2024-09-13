@@ -51,7 +51,7 @@ const PlaceOrder = () => {
   };
 
   return (
-    <div className="flex flex-col items-center mt-10 w-full min-h-screen">
+    <div className="flex flex-col items-center mt-10 w-full min-h-screen py-36">
       {!isOrderConfirmed ? (
         <div className="w-full max-w-6xl flex flex-col-reverse bg-gray-200 lg:flex-row gap-6 p-5">
           <div className="flex-1 bg-white rounded-lg shadow-lg">

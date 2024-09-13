@@ -6,6 +6,7 @@ import PlaceOrder from './pages/PlaceOrder/PlaceOrder';
 import Footer from './components/Footer/Footer';
 import { useState, useEffect } from 'react';
 import LoginModal from './components/LoginModal/LoginModal';
+import ScrollToTop from './components/ScrollToTop/ScrollToTop';
 
 const App = () => {
   const [showLogin, setShowLogin] = useState(false);
@@ -25,18 +26,20 @@ const App = () => {
   }, [showLogin]);
 
   return (
-    <>
+    <div id="">
       {showLogin && <LoginModal setShowLogin={setShowLogin} />}
       <div className='app'>
         <Navbar setShowLogin={setShowLogin} />
+        <ScrollToTop />
         <Routes>
-          <Route path="/" element={<Home />} />
+          
+          <Route path="/" element={<Home id="inicio" />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/order" element={<PlaceOrder />} />
         </Routes>
       </div>
-      <Footer />
-    </>
+      <Footer setShowLogin={setShowLogin} />
+    </div>
   );
 }
 
