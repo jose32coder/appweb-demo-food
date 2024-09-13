@@ -11,10 +11,12 @@ function Home() {
 
   return (
     <div className="pt-32">
-        <Header/>
+      <Header />
+      <div className="" id="menu">
         <ExploreMenu category={category} setCategory={setCategory} />
-        <FoodList category={category}/>
-        <AppDownload/>
+        <FoodList category={category} />
+      </div>
+      <AppDownload />
     </div>
   )
 }

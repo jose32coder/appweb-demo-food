@@ -37,7 +37,7 @@ export default function Footer({ setShowLogin }) {
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
                     {/* Logo and tagline */}
                     <div className="col-span-1 sm:col-span-2 lg:col-span-1 mb-8 sm:mb-0">
-                        <img src={assets.logo} alt="Logo" className="w-auto sm:h-10 mb-4" />
+                        <img src='Container_logo_white.png' alt="Logo" className="w-auto sm:h-24 mb-4" />
                         <p className="text-sm sm:text-base text-gray-400 mb-4">Sabores auténticos que encantan: Descubre la mejor comida para cada ocasión.</p>
                         <div className="flex space-x-4 mb-4"> {/* Agregado el margen inferior aquí */}
                             <a href="https://api.whatsapp.com/send/?phone=584126259275&text&type=phone_number&app_absent=0" target='_blank' className="text-gray-400 hover:text-white transition-colors">

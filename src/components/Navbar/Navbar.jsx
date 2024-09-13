@@ -1,37 +1,82 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect, useContext, useRef } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { assets } from '../../assets/assets';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons'; // Importa íconos de FontAwesome
-import { StoreContext } from '../../context/StoreContext'; // Asegúrate de ajustar la ruta a tu archivo
+import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { StoreContext } from '../../context/StoreContext';
 
 function Navbar({ setShowLogin }) {
 	const [activeId, setActiveId] = useState('inicio');
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
+	const isScrolling = useRef(false); // Ref para controlar si está haciendo smooth scroll
 	const navigate = useNavigate();
 	const location = useLocation();
-	const { itemsCart } = useContext(StoreContext); // Accede al contexto
+	const { itemsCart } = useContext(StoreContext);
 
 	const handleMenuClick = (id) => {
 		setActiveId(id);
+		isScrolling.current = true; // Desactiva el evento de scroll temporalmente
 		navigate(`/#${id}`);
-		setIsMenuOpen(false); // Cierra el menú después de hacer clic
+		setIsMenuOpen(false);
+
+		// Reactivar el evento de scroll después del smooth scroll
+		setTimeout(() => {
+			isScrolling.current = false;
+		}, 1000); // Ajusta el tiempo según la duración del smooth scroll
 	};
 
+	// Manejar scroll y cambiar el activeId dinámicamente
+	useEffect(() => {
+		const handleScroll = () => {
+			if (isScrolling.current) return; // Si está en smooth scroll, no ejecuta el scroll handler
+
+			const sections = ['inicio', 'menu', 'appMovil', 'contacto'];
+			let currentSection = '';
+
+			sections.forEach((section) => {
+				const element = document.getElementById(section);
+				if (element) {
+					const rect = element.getBoundingClientRect();
+
+					// Detecta si la sección está al menos en un 50% visible
+					const sectionVisible = rect.top < window.innerHeight * 0.5 && rect.bottom > window.innerHeight * 0.5;
+
+					if (sectionVisible) {
+						currentSection = section;
+					}
+				}
+			});
+
+			if (currentSection && currentSection !== activeId) {
+				setActiveId(currentSection);
+			}
+		};
+
+		// Agrega el event listener para detectar el scroll
+		window.addEventListener('scroll', handleScroll);
+
+		// Limpia el event listener cuando se desmonte el componente
+		return () => {
+			window.removeEventListener('scroll', handleScroll);
+		};
+	}, [activeId]);
+
+	// Para asegurarte de que el hash en la URL también actualice el activeId
 	useEffect(() => {
 		const hash = location.hash.slice(1); // Elimina el '#' del hash
-		setActiveId(hash);
+		if (hash) setActiveId(hash);
 	}, [location.hash]);
 
-	const cartItemCount = Object.keys(itemsCart).length; // Cuenta los elementos en el carrito
+	const cartItemCount = Object.keys(itemsCart).length;
 
 	return (
 		<div className='fixed top-0 left-0 w-full z-40 h-auto'>
-			<div className='flex px-[2.5%] justify-between items-center w-full relative bg-white'>
+			<div className='flex px-[2.5%] justify-between items-center w-full relative bg-white py-2'>
 				<div className='w-auto md:w-52 flex items-center'>
 					<Link to='/'>
-						<img src='/container_logo.png' alt="" className='h-20 md:h-36' />
+						<img src='/container_logo.png' alt="" className='h-16' />
 					</Link>
 				</div>
 				{/* Botón de menú para móviles */}
@@ -83,7 +128,7 @@ function Navbar({ setShowLogin }) {
 							<div className="absolute min-w-2.5 min-h-2.5 bg-[tomato] rounded-md -right-2 -top-2"></div>
 						)}
 					</div>
-					<button className='hidden md:block bg-transparent text-sm mdCustom:text-base text-[#49557e] border-2 border-tomato py-[5px] px-2 sm:py-[7px] sm:px-5 mdCustom:py-2 mdCustom:px-6 cursor-pointer rounded-md hover:bg-[#fff4f2] duration-300' onClick={() => setShowLogin(true)}>Registrate</button>
+					<button className='hidden md:flex bg-gradient-to-r from-[#ff7f50] to-[#ff4500] text-white text-base font-medium py-2 px-6 rounded-full shadow-md hover:from-[#ff6347] hover:to-[#ff4500] transition-transform transform hover:scale-105 duration-300' onClick={() => setShowLogin(true)}>Registrate</button>
 				</div>
 			</div>
 			{/* Menú para móviles */}
@@ -126,10 +171,19 @@ function Navbar({ setShowLogin }) {
 							</li>
 						</a>
 					</ul>
-					<div className=''>
-						<p>¿No tienes usuario?</p>
-						<button className='bg-transparent text-sm mdCustom:text-base text-[#49557e] border-2 border-tomato py-[5px] px-2 sm:py-[7px] sm:px-5 mdCustom:py-2 mdCustom:px-6 cursor-pointer rounded-md hover:bg-[#fff4f2] duration-300' onClick={() => {setIsMenuOpen(false); setShowLogin(true)}}>Registrate aquí</button>
+					<div className='flex flex-col items-center justify-center gap-2 bg-gray-100 w-full py-4 px-4 mt-7 rounded-lg '>
+						<p className='text-lg font-semibold text-gray-800'>¿No tienes cuenta?</p>
+						<button
+							className='bg-gradient-to-r from-[#ff7f50] to-[#ff4500] text-white text-base font-medium py-2 px-6 rounded-full shadow-md hover:from-[#ff6347] hover:to-[#ff4500] transition-transform transform hover:scale-105 duration-300'
+							onClick={() => {
+								setIsMenuOpen(false);
+								setShowLogin(true);
+							}}
+						>
+							¡Regístrate aquí!
+						</button>
 					</div>
+
 				</div>
 			)}
 			{/* Fondo opaco para el menú en móviles */}
