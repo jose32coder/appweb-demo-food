@@ -12,7 +12,7 @@ function Home() {
   return (
     <div className="pt-32">
       <Header />
-      <div className="" id="menu">
+      <div className="h-auto w-auto" id="menu">
         <ExploreMenu category={category} setCategory={setCategory} />
         <FoodList category={category} />
       </div>

@@ -3,6 +3,7 @@ import { StoreContext } from "../../context/StoreContext";
 import OrderDetails from '../../components/OrderDetails/OrderDetails';
 import Confirmation from '../../components/Confirmation/Confirmation';
 import OrderSummary from '../../components/OrderSummary/OrderSummary';
+import usePlaceOrderAnimation from '../../Hooks/usePlaceOrderAnimation'; // Importar el hook
 
 const PlaceOrder = () => {
   const { itemsCart, food_list } = useContext(StoreContext);
@@ -50,11 +51,13 @@ const PlaceOrder = () => {
     setIsOrderConfirmed(true);
   };
 
+  const { containerRef, detailsRef, summaryRef } = usePlaceOrderAnimation(); // Usar el hook
+
   return (
-    <div className="flex flex-col items-center mt-10 w-full min-h-screen py-36">
+    <div className="flex flex-col items-center mt-10 w-full min-h-screen py-36" ref={containerRef}>
       {!isOrderConfirmed ? (
         <div className="w-full max-w-6xl flex flex-col-reverse bg-gray-200 lg:flex-row gap-6 p-5">
-          <div className="flex-1 bg-white rounded-lg shadow-lg">
+          <div className="flex-1 bg-white rounded-lg shadow-lg" ref={detailsRef}>
             <OrderDetails
               customerData={customerData}
               paymentData={paymentData}
@@ -63,7 +66,7 @@ const PlaceOrder = () => {
               onPlaceOrder={handlePlaceOrder}
             />
           </div>
-          <div className="w-full lg:w-1/3 rounded-lg">
+          <div className="w-full lg:w-1/3 rounded-lg" ref={summaryRef}>
             <OrderSummary cartItems={cartItems} />
           </div>
         </div>

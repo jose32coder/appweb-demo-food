@@ -1,11 +1,9 @@
-/* eslint-disable no-undef */
-/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faWhatsapp, faInstagram } from '@fortawesome/free-brands-svg-icons';
 import { faChevronDown, faChevronUp, faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
-import { assets } from '../../assets/assets'
+
 
 export default function Footer({ setShowLogin }) {
     const [expandedSection, setExpandedSection] = useState(null)
@@ -37,7 +35,7 @@ export default function Footer({ setShowLogin }) {
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
                     {/* Logo and tagline */}
                     <div className="col-span-1 sm:col-span-2 lg:col-span-1 mb-8 sm:mb-0">
-                        <img src='Container_logo_white.png' alt="Logo" className="w-auto sm:h-24 mb-4" />
+                        <img src='Container_logo_white.png' alt="Logo" className="w-auto h-16 sm:h-24 mb-4" />
                         <p className="text-sm sm:text-base text-gray-400 mb-4">Sabores auténticos que encantan: Descubre la mejor comida para cada ocasión.</p>
                         <div className="flex space-x-4 mb-4"> {/* Agregado el margen inferior aquí */}
                             <a href="https://api.whatsapp.com/send/?phone=584126259275&text&type=phone_number&app_absent=0" target='_blank' className="text-gray-400 hover:text-white transition-colors">
