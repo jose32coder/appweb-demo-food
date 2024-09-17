@@ -47,7 +47,7 @@ const PagoMovilPayment = ({ onPagoMovilChange, pagoMovilData, amount }) => {
             name="bancoEmisor"
             value={pagoMovilData.bancoEmisor}
             onChange={onPagoMovilChange}
-            className="w-full border p-3 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full border p-3 rounded focus:outline-none focus:ring-2 focus:ring-orange-500"
             placeholder="Ej. Mercantil (0105)"
             required
           />
@@ -59,7 +59,7 @@ const PagoMovilPayment = ({ onPagoMovilChange, pagoMovilData, amount }) => {
             name="referencia"
             value={pagoMovilData.referencia}
             onChange={onPagoMovilChange}
-            className="w-full border p-3 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full border p-3 rounded focus:outline-none focus:ring-2 focus:ring-orange-500"
             placeholder="Número de referencia del pago"
             required
           />
@@ -71,8 +71,8 @@ const PagoMovilPayment = ({ onPagoMovilChange, pagoMovilData, amount }) => {
             name="telefonoTitular"
             value={pagoMovilData.telefonoTitular}
             onChange={onPagoMovilChange}
-            className="w-full border p-3 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-            placeholder="Ej. 0412-3456789"
+            className="w-full border p-3 rounded focus:outline-none focus:ring-2 focus:ring-orange-500"
+            placeholder="Ej. 0412-1234567"
             required
           />
         </div>

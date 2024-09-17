@@ -9,6 +9,9 @@ export default {
       screens: {
         'mdCustom': '900px', // Custom breakpoint
       },
+      ringColor: {
+        'gradient-1': 'linear-gradient(to right, #ff7f50, #ff4500)',
+      },
     },
   },
   plugins: [],

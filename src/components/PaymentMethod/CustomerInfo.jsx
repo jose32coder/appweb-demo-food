@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
 // src/components/CustomerInfo.js
 
-
 const CustomerInfo = ({ customerData, handleCustomerChange }) => {
   return (
     <div>
@@ -14,7 +13,8 @@ const CustomerInfo = ({ customerData, handleCustomerChange }) => {
             name="name"
             value={customerData.name}
             onChange={handleCustomerChange}
-            className="w-full border p-3 rounded"
+            className="w-full border p-3 rounded focus:outline-none focus:ring-2 focus:ring-orange-500"
+            placeholder="Juan Pérez"
             required
           />
         </div>
@@ -25,7 +25,8 @@ const CustomerInfo = ({ customerData, handleCustomerChange }) => {
             name="email"
             value={customerData.email}
             onChange={handleCustomerChange}
-            className="w-full border p-3 rounded"
+            className="w-full border p-3 rounded focus:outline-none focus:ring-2 focus:ring-orange-500"
+            placeholder="ejemplo@ejemplo.com"
             required
           />
         </div>
@@ -36,7 +37,8 @@ const CustomerInfo = ({ customerData, handleCustomerChange }) => {
             name="address"
             value={customerData.address}
             onChange={handleCustomerChange}
-            className="w-full border p-3 rounded"
+            className="w-full border p-3 rounded focus:outline-none focus:ring-2 focus:ring-orange-500"
+            placeholder="Ciudad, avenida, calle"
             required
           />
         </div>
@@ -47,7 +49,8 @@ const CustomerInfo = ({ customerData, handleCustomerChange }) => {
             name="phone"
             value={customerData.phone}
             onChange={handleCustomerChange}
-            className="w-full border p-3 rounded"
+            className="w-full border p-3 rounded focus:outline-none focus:ring-2 focus:ring-orange-500"
+            placeholder="Ej. 0412-1234567"
             required
           />
         </div>
