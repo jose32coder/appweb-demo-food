@@ -1,9 +1,9 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react'; // Asegúrate de importar useState
 import { StoreContext } from "../../context/StoreContext";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link, useNavigate } from 'react-router-dom';
 import { faMinus, faPlus, faTimes } from '@fortawesome/free-solid-svg-icons';
-import useCartAnimation from '../../Hooks/useCartAnimation'; // Asegúrate de importar el hook
+import useCartAnimation from '../../Hooks/useCartAnimation';
 
 export default function Cart() {
     const { itemsCart, food_list, removeCartInTheCart, setItemQuantity } = useContext(StoreContext);
@@ -11,6 +11,8 @@ export default function Cart() {
     const { cartContainerRef, cartItemsRef } = useCartAnimation();
 
     const cartItems = food_list.filter(item => itemsCart[item._id] > 0);
+
+    const [orderNote, setOrderNote] = useState('');  // Agrega este estado para el textarea
 
     const handleRemoveItem = (itemId) => {
         removeCartInTheCart(itemId);
@@ -23,13 +25,15 @@ export default function Cart() {
     };
 
     const handleProcessPayment = () => {
+        // Aquí puedes enviar el valor del textarea junto con el resto de los datos del pedido
+        console.log('Nota del pedido:', orderNote);
         navigate('/order');
     };
 
     return (
-        <div className="flex flex-col items-center justify-center my-auto w-full min-h-screen" ref={cartContainerRef}>
+        <div className="flex flex-col items-center justify-center py-20 my-auto w-full min-h-screen" ref={cartContainerRef}>
             <div className="flex flex-col items-center w-full bg-gray-100 p-4 md:p-10">
-                <div className="w-full max-w-4xl bg-white p-4 md:p-6 rounded-lg shadow-lg">
+                <div className="w-full max-w-4xl h-auto bg-white p-4 md:p-6 rounded-lg shadow-lg">
                     <h2 className="text-lg md:text-xl font-bold mb-4">Tu carrito</h2>
                     <div className="flex flex-col md:flex-row justify-between mb-4">
                         <span className="text-md md:text-base">
@@ -39,7 +43,7 @@ export default function Cart() {
                             Total: ${cartItems.reduce((total, item) => total + item.price * itemsCart[item._id], 0).toFixed(2)}
                         </span>
                     </div>
-                    <div className="space-y-4 min-h-10 max-h-96 overflow-auto">
+                    <div className="space-y-4 min-h-10 max-h-[360px] overflow-auto">
                         {cartItems.map((item, index) => (
                             <div
                                 key={item._id}
@@ -51,9 +55,6 @@ export default function Cart() {
                                         src={item.image}
                                         alt={item.name}
                                         className="w-16 h-16 md:w-24 md:h-24 object-cover rounded"
-                                        width="64"
-                                        height="64"
-                                        style={{ aspectRatio: "64/64", objectFit: "cover" }}
                                     />
                                     <div>
                                         <h3 className="font-semibold text-md md:text-base">{item.name}</h3>
@@ -92,6 +93,23 @@ export default function Cart() {
                             </div>
                         ))}
                     </div>
+
+                    {/* Textarea para notas del cliente */}
+                    <div className="mt-6">
+                        <label htmlFor="orderNote" className="block text-sm font-medium text-gray-700 mb-2">
+                            Especificaciones del pedido (opcional):
+                        </label>
+                        <textarea
+                            id="orderNote"
+                            name="orderNote"
+                            rows="3"
+                            placeholder="Por ejemplo, sin cebolla o sin mostaza."
+                            value={orderNote}
+                            onChange={(e) => setOrderNote(e.target.value)}
+                            className="w-full border-gray-300 rounded-md shadow-sm p-2 resize-none focus:ring-black focus:border-black"
+                        />
+                    </div>
+
                     <div className="flex flex-col md:flex-row justify-between mt-6">
                         <Link to='/#menu'>
                             <button className="bg-gray-200 text-gray-700 py-2 px-4 rounded-md shadow-md hover:bg-gray-300 mb-4 md:mb-0">

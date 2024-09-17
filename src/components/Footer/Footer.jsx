@@ -50,38 +50,45 @@ export default function Footer({ setShowLogin }) {
                                 <FontAwesomeIcon icon={faMapMarkerAlt} size="lg" className="text-gray-400" />
                             </a>
                         </div>
-                        <a href="https://maps.app.goo.gl/PaY94secAFVMNcFj6" target='_blank' className='text-gray-400'>
-                            HQCP+H67, Av. 13 de Junio, Araure 3303, Portuguesa, Venezuela
-                        </a>
                     </div>
 
                     {/* Navigation Links */}
                     <FooterSection title="Enlaces rápidos" id="quickLinks">
                         <ul className="space-y-2">
-                            {["Inicio", "Menú", "App Movil", "Contacto"].map((link, index) => (
+                            {[
+                                { label: "Inicio", href: "#inicio" },
+                                { label: "Menú", href: "#menu" },
+                                { label: "App Móvil", href: "#appMovil" },
+                                { label: "Contacto", href: "#contacto" }
+                            ].map((link, index) => (
                                 <li key={index}>
-                                    <a href="#" className="text-gray-400 hover:text-white transition-colors">{link}</a>
+                                    <a href={link.href} className="text-gray-400 hover:text-white transition-colors">
+                                        {link.label}
+                                    </a>
                                 </li>
                             ))}
                         </ul>
                     </FooterSection>
 
+
                     {/* Contact Information */}
                     <FooterSection title="Contactanos" id="contactUs">
-                        <address className="not-italic text-sm sm:text-base">
-                            <p className="mb-2">Ciudad, localizacion, sitio</p>
-                            <p className="mb-2">Teléfono: 0424-1234567</p>
-                            <p>Correo: info@example.com</p>
+                        <address className="not-italic flex flex-col space-y-2 text-sm sm:text-base">
+                            <a href="https://maps.app.goo.gl/PaY94secAFVMNcFj6" target='_blank' className='text-gray-400'>
+                                Dirección: HQCP+H67, Av. 13 de Junio, Araure 3303, Portuguesa, Venezuela
+                            </a>
+                            <a href='https://api.whatsapp.com/send/?phone=584126259275&text&type=phone_number&app_absent=0' className="text-gray-400">Teléfono: 04126259275</a>
+                            <a href="mailto:container@containers.com" className='text-gray-400'>Correo: containers@containers.com</a>
                         </address>
                     </FooterSection>
 
                     {/* Newsletter Signup */}
                     <div className="col-span-1 sm:col-span-2 lg:col-span-1 mb-8 sm:mb-0">
                         <h3 className="text-lg font-semibold mb-2">¡Vamos a comer!</h3>
-                        <p className="text-sm text-gray-400 mb-4">Registrate y disfruta de las mejores comidad que tenemos para ti.</p>
+                        <p className="text-sm sm:text-base text-gray-400 mb-4">Registrate y disfruta de las mejores comidad que tenemos para ti.</p>
                         <button
                             href="#subscribe"
-                            className="inline-block px-6 py-3 bg-blue-600 text-white font-medium rounded-lg shadow-md hover:bg-blue-700 transition-colors" onClick={() => setShowLogin(true)}
+                            className="hidden md:flex bg-gradient-to-r from-[#ff7f50] to-[#ff4500] text-white text-base font-medium py-2 px-6 rounded-md shadow-md hover:from-[#ff6347] hover:to-[#ff4500] transition-transform transform hover:scale-105 duration-300" onClick={() => setShowLogin(true)}
                         >
                             Registrate aquí
                         </button>
@@ -90,7 +97,7 @@ export default function Footer({ setShowLogin }) {
 
                 {/* Copyright */}
                 <div className="mt-8 pt-8 border-t border-gray-700 text-center text-xs sm:text-sm text-gray-400">
-                    © {new Date().getFullYear()} Tomato. Todos los derechos reservados.
+                    © {new Date().getFullYear()} Containers Resto & Bar. Todos los derechos reservados.
                 </div>
             </div>
         </footer>

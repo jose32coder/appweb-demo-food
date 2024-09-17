@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { useState, useEffect, useContext, useRef } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { assets } from '../../assets/assets';
@@ -63,6 +62,7 @@ function Navbar({ setShowLogin }) {
   useNavbarAnimation({ menuItemsRef, menuItemsDesktopRef, iconoRef, logoRef, registerBtnRef, isMenuOpen });
 
   const cartItemCount = Object.keys(itemsCart).length;
+  const isHomePage = location.pathname === '/';
 
   return (
     <div className='fixed top-0 left-0 w-full z-40 h-auto'>
@@ -89,7 +89,7 @@ function Navbar({ setShowLogin }) {
             <li
               onClick={() => handleMenuClick('inicio')}
               ref={(el) => (menuItemsDesktopRef.current[0] = el)}
-              className={activeId === 'inicio' ? 'active' : ''}
+              className={isHomePage && activeId === 'inicio' ? 'active' : ''}
             >
               Inicio
             </li>
@@ -98,7 +98,7 @@ function Navbar({ setShowLogin }) {
             <li
               onClick={() => handleMenuClick('menu')}
               ref={(el) => (menuItemsDesktopRef.current[1] = el)}
-              className={activeId === 'menu' ? 'active' : ''}
+              className={isHomePage && activeId === 'menu' ? 'active' : ''}
             >
               Menú
             </li>
@@ -107,7 +107,7 @@ function Navbar({ setShowLogin }) {
             <li
               onClick={() => handleMenuClick('appMovil')}
               ref={(el) => (menuItemsDesktopRef.current[2] = el)}
-              className={activeId === 'appMovil' ? 'active' : ''}
+              className={isHomePage && activeId === 'appMovil' ? 'active' : ''}
             >
               App Móvil
             </li>
@@ -116,7 +116,7 @@ function Navbar({ setShowLogin }) {
             <li
               onClick={() => handleMenuClick('contacto')}
               ref={(el) => (menuItemsDesktopRef.current[3] = el)}
-              className={activeId === 'contacto' ? 'active' : ''}
+              className={isHomePage && activeId === 'contacto' ? 'active' : ''}
             >
               Contacto
             </li>
@@ -136,7 +136,7 @@ function Navbar({ setShowLogin }) {
             )}
           </div>
           <button
-            className='hidden md:flex bg-gradient-to-r from-[#ff7f50] to-[#ff4500] text-white text-base font-medium py-2 px-6 rounded-full shadow-md hover:from-[#ff6347] hover:to-[#ff4500] transition-transform transform hover:scale-105 duration-300'
+            className='hidden md:flex bg-gradient-to-r from-[#ff7f50] to-[#ff4500] text-white text-base font-medium py-2 px-6 rounded-md shadow-md hover:from-[#ff6347] hover:to-[#ff4500] transition-transform transform hover:scale-105 duration-300'
             onClick={() => setShowLogin(true)}
           >
             Registrate
@@ -163,7 +163,7 @@ function Navbar({ setShowLogin }) {
               <li
                 onClick={() => handleMenuClick('inicio')}
                 ref={(el) => (menuItemsRef.current[0] = el)}
-                className={activeId === 'inicio' ? 'active' : ''}
+                className={isHomePage && activeId === 'inicio' ? 'active' : ''}
               >
                 Inicio
               </li>
@@ -172,7 +172,7 @@ function Navbar({ setShowLogin }) {
               <li
                 onClick={() => handleMenuClick('menu')}
                 ref={(el) => (menuItemsRef.current[1] = el)}
-                className={activeId === 'menu' ? 'active' : ''}
+                className={isHomePage && activeId === 'menu' ? 'active' : ''}
               >
                 Menú
               </li>
@@ -181,7 +181,7 @@ function Navbar({ setShowLogin }) {
               <li
                 onClick={() => handleMenuClick('appMovil')}
                 ref={(el) => (menuItemsRef.current[2] = el)}
-                className={activeId === 'appMovil' ? 'active' : ''}
+                className={isHomePage && activeId === 'appMovil' ? 'active' : ''}
               >
                 App Móvil
               </li>
@@ -190,7 +190,7 @@ function Navbar({ setShowLogin }) {
               <li
                 onClick={() => handleMenuClick('contacto')}
                 ref={(el) => (menuItemsRef.current[3] = el)}
-                className={activeId === 'contacto' ? 'active' : ''}
+                className={isHomePage && activeId === 'contacto' ? 'active' : ''}
               >
                 Contacto
               </li>
@@ -201,7 +201,7 @@ function Navbar({ setShowLogin }) {
             className='flex flex-col space-y-2'>
             <p className='font-medium'>¿Aun no te registras?</p>
             <button
-              className='bg-gradient-to-r from-[#ff7f50] to-[#ff4500] text-white text-base font-medium py-2 px-6 rounded-full shadow-md hover:from-[#ff6347] hover:to-[#ff4500] transition-transform transform hover:scale-105 duration-300'
+              className='bg-gradient-to-r from-[#ff7f50] to-[#ff4500] text-white text-base font-medium py-2 px-6 rounded-md shadow-md hover:from-[#ff6347] hover:to-[#ff4500] transition-transform transform hover:scale-105 duration-300'
               onClick={() => setShowLogin(true)}
             >
               Registrate
