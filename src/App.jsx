@@ -7,8 +7,7 @@ import Footer from './components/Footer/Footer';
 import { useState, useEffect } from 'react';
 import LoginModal from './components/LoginModal/LoginModal';
 import ScrollToTop from './components/ScrollToTop/ScrollToTop';
-import Preloader from './components/PreLoader/Preloader';
- // Importa tu componente Preloader
+import Preloader from './components/Preloader/Preloader'
 
 const App = () => {
   const [showLogin, setShowLogin] = useState(false);
@@ -18,7 +17,7 @@ const App = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 3000); // Simula una carga de 3 segundos
+    }, 1000); // Simula una carga de 3 segundos
 
     return () => clearTimeout(timer);
   }, []);

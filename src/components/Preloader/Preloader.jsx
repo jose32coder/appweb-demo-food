@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import Lottie from 'lottie-react';
 import Animation from '../../assets/Animation.json'; // Importa el archivo Lottie JSON
 
