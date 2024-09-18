@@ -35,6 +35,11 @@ a {
   margin: auto;
 }
 
+.invisible{
+  opacity: 0;
+  visibility: hidden;
+}
+
 li {
   cursor: pointer;
 }
