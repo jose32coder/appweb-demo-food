@@ -75,20 +75,20 @@ function Navbar({ setShowLogin }) {
 
   return (
     <div className="fixed top-0 left-0 w-full z-40 h-auto">
-      <div className="flex px-[2.5%] justify-between items-center w-full relative bg-white py-2">
+      <div className="flex px-[2.5%] justify-between items-center w-full relative bg-white py-3">
         <div className="w-auto md:w-52 flex items-center">
           <Link to="/">
             <img
-              src="src/assets/logo.png"
+              src={assets.logo}
               alt=""
-              className="h-12 md:h-14"
+              className="h-auto md:h-auto w-24 md:w-auto"
               ref={logoRef}
             />
           </Link>
         </div>
         <button
           ref={iconoRef}
-          className="text-2xl -translate-x-4 md:hidden z-50"
+          className="text-2xl mr-6 md:hidden z-50"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
         >
           <FontAwesomeIcon icon={faBars} />

@@ -7,6 +7,7 @@ import {
   faChevronUp,
   faMapMarkerAlt,
 } from "@fortawesome/free-solid-svg-icons";
+import { assets } from "../../assets/assets";
 
 export default function Footer({ setShowLogin }) {
   const [expandedSection, setExpandedSection] = useState(null);
@@ -45,9 +46,9 @@ export default function Footer({ setShowLogin }) {
           {/* Logo and tagline */}
           <div className="col-span-1 sm:col-span-2 lg:col-span-1 mb-8 sm:mb-0">
             <img
-              src="src/assets/logo.png"
+              src={assets.logo}
               alt="Logo"
-              className="w-auto sm:h-24 mb-4"
+              className="w-auto mb-4"
             />
             <p className="text-sm sm:text-base text-gray-400 mb-4">
               Sabores auténticos que encantan: Descubre la mejor comida para
